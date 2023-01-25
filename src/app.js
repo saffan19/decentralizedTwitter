@@ -85,15 +85,21 @@ App = {
     for (var i = tweetCount; i >=1; i--){
       const task = await App.twitter.tasks(i);
       const task_id = task[0].toNumber();
-      const task_content = task[1];
-      console.log(task_content);
-
-
+      const task_content1 = task[1];
+      // console.log(task_content);
+      const timestamp=task_content1.slice(0,25);
+      const accaddr=task_content1.slice(24,66)
+      const task_content=task_content1.slice(66,);
+      console.log(timestamp);
+      console.log(accaddr);
+      // console.log(App.account[0]);
+      
   
       const $newTaskTemplate = $tackTemplate.clone()
-      console.log($newTaskTemplate);
+      // console.log($newTaskTemplate);
       $newTaskTemplate.find('.tcontent').html(task_content)
-
+      $newTaskTemplate.find('.tweetername').html(accaddr)
+      $newTaskTemplate.find('.tweettime').html(timestamp)      
 
       // Put the task in the correct list
     
@@ -122,7 +128,10 @@ App = {
 
   createTweet: async () => {
     App.setLoading(true);
-    const content = $('#newTask').val();
+    const content1 = $('#newTask').val();
+    const timestamp=new Date().toISOString();
+    const accaddr=App.account[0]; 
+    const content=timestamp+accaddr+content1;
     await App.twitter.createTweet(content, { from: App.account[0] });
     window.location.reload();
   },
