@@ -1,5 +1,5 @@
-const TodoList = artifacts.require("TodoList");
+const Twitter = artifacts.require("Twitter");
 
 module.exports = function (deployer) {
-  deployer.deploy(TodoList);
+  deployer.deploy(Twitter);
 };

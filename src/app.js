@@ -47,13 +47,13 @@ App = {
 
   loadContract: async () => {
     // create a JS version of the contracts
-    const todoList = await $.getJSON('TodoList.json')
-    App.contracts.TodoList = TruffleContract(todoList)
-    App.contracts.TodoList.setProvider(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
-    // console.log(todoList);
+    const twitter = await $.getJSON('Twitter.json')
+    App.contracts.Twitter = TruffleContract(twitter)
+    App.contracts.Twitter.setProvider(new Web3.providers.HttpProvider("http://127.0.0.1:7545"));
+    // console.log(twitter);
 
     // Hydrate the smart contract with values from the blockchain
-    App.todoList = await App.contracts.TodoList.deployed()
+    App.twitter = await App.contracts.Twitter.deployed()
   },
 
   render: async () => {
@@ -77,32 +77,29 @@ App = {
 
   renderTasks: async () => {
     // load all the tasks from the blockchain
-    const taskCount = await App.todoList.taskCount();
+    const tweetCount = await App.twitter.tweetCount();
+    console.log(tweetCount);
     const $tackTemplate = $(".taskTemplate");
 
     // render each of the tasks
-    for (var i = taskCount; i >=1; i--){
-      const task = await App.todoList.tasks(i);
+    for (var i = tweetCount; i >=1; i--){
+      const task = await App.twitter.tasks(i);
       const task_id = task[0].toNumber();
       const task_content = task[1];
-      const task_completed = task[2];
+      console.log(task_content);
 
-      // Create the html for the task
+
+  
       const $newTaskTemplate = $tackTemplate.clone()
-      $newTaskTemplate.find('.content').html(task_content)
-      $newTaskTemplate.find('input')
-          .prop('name', task_id)
-          .prop('checked', task_completed)
-          .on('click', App.toggleCompleted)
+      console.log($newTaskTemplate);
+      $newTaskTemplate.find('.tcontent').html(task_content)
+
 
       // Put the task in the correct list
-      if (task_completed) {
-        $('#completedTaskList').append($newTaskTemplate)
-      } else {
-        $('#taskList').append($newTaskTemplate)
-      }
+    
+      $('#taskList').append($newTaskTemplate)
+      
 
-      // Show the task
       $newTaskTemplate.show()
     }
 
@@ -123,20 +120,20 @@ App = {
   },
 
 
-  createTask: async () => {
+  createTweet: async () => {
     App.setLoading(true);
     const content = $('#newTask').val();
-    await App.todoList.createTask(content, { from: App.account[0] });
+    await App.twitter.createTweet(content, { from: App.account[0] });
     window.location.reload();
   },
 
 
-  toggleCompleted: async (e) => {
-    App.setLoading(true)
-    const taskId = e.target.name
-    await App.todoList.toggleCompleted(taskId, { from: App.account[0] });
-    window.location.reload()
-  },
+  // toggleCompleted: async (e) => {
+  //   App.setLoading(true)
+  //   const taskId = e.target.name
+  //   await App.twitter.toggleCompleted(taskId, { from: App.account[0] });
+  //   window.location.reload()
+  // },
 
 
 
