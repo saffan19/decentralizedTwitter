@@ -11,7 +11,7 @@ contract TodoList {
   }
 
   constructor() public{
-    createTask('Example Task Intialized');
+    // createTask('Example Task Intialized');
   }
 
   mapping(uint => Task) public tasks;
