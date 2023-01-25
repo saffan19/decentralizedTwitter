@@ -42,8 +42,16 @@
       }
       .taskTemplate{
         width: 100%;
+        border-color: black;
+        border-width: 1px;
+        padding: 10px;
+        box-shadow: rgba(149, 157, 165, 0.2) 4px 4px 10px;
+        
+       
       }
-   
+      .taskTemplate:hover{
+        transform: scale(1.01);
+      }
       #submit-button{
         width: 100%;
         margin-top: 20px;
@@ -52,6 +60,7 @@
         color: white;
         border-radius: 5px;
         border-width: 0;
+        margin-bottom: 20px;
       }
       #newTask{
         height: 50px;
@@ -65,12 +74,29 @@
 
       }
       main{
-        width: 100%;
-        margin:0;
+        width: 70%;
+        margin-top:70px;
+        margin: auto;
+       
       }
       form{
         margin: 0px;
         width: 100%;
+      }
+      .row{
+        margin: auto;
+      }
+      .taskTemplate{
+        margin: 5px;
+      }
+      img{
+         background-color: aqua;
+        width: 50px;
+        height: 50px;
+        margin-left: 0px;
+        border-radius: 30px;
+   
+        
       }
     </style>
   </head>
@@ -87,7 +113,7 @@
     </nav>
     <div class="container-fluid">
       <div class="row">
-        <main role="main" class="">
+        <main role="main" class="body-cont d-flex justify-content-center">
           <div id="loader" class="text-center">
             <p class="text-center">Loading...</p>
           </div>
@@ -104,6 +130,10 @@
             </form>
             <ul id="taskList" class="list-unstyled">
               <div class="taskTemplate" class="checkbox" style="display: none">
+                <div class="tweetHead">
+                  <img src="https://static.vecteezy.com/system/resources/previews/002/318/271/original/user-profile-icon-free-vector.jpg" alt="Italian Trulli">
+                  <span class="tweetername"></span>
+                </div>
                 <label>
                   <!-- <input type="checkbox" /> -->
                   <span class="content">
@@ -117,7 +147,7 @@
         </main>
       </div>
     </div>
-
+     
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
