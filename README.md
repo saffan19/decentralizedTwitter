@@ -1,9 +1,18 @@
-# eth-todo-list
-Blockchain Todo App Tutorial Powered by Ethereum Smart Contracts
+# Decentralized Twitter
 
+To run:
 
-TODO_:
+Install Ganache
+Connect metamask to gananche network
 
-1) 'Loading...' does not appears although there is no wallet/account connected. But when one tries to create a task, 'Loading...' appears.
-3) After connecting to the site with a new account/wallet, one needs to refresh the page manually to be able to get rid of 'Loading..'
-4) MetaMask does not ask if you want the 'Transaction' and how much you want to pay for that.
+clone repository
+
+npm install
+npm install web3
+npm install truffle -g
+
+To these everytime ganache is restarted: 
+
+truffle compile
+truffle migrate --reset
+npm run dev
